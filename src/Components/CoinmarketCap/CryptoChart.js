@@ -88,42 +88,44 @@ export const CryptoChart = (props) => {
       },[])
       
     return (
+      <>
+        <div className="drop-dates">
+          
+        <h1>{name}</h1>
+      <Dropdown>
+        <Dropdown.Toggle variant="success" id="dropdown-basic">
+            Dates
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+            {
+                dates.map(date =><Dropdown.Item onClick={()=>{setUserData({
+                    labels: time.filter(item => item === date),
+                    datasets: [
+                      {
+                        label: "Price in USD",
+                        data: Object.values(allData.filter(item => item.timestamp === date).map(item => item.data.quote.USD.price)),
+                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
+                        borderColor: "rgba(75,192,192,1)",
+                        borderWidth: 2,
+                        pointBackgroundColor: "rgba(75,192,192,1)",
+                        pointBorderColor: "#fff",
+                        pointBorderWidth: 1,
+                        pointHoverBackgroundColor: "#fff",
+                        pointHoverBorderColor: "rgba(75,192,192,1)",
+                        pointHoverBorderWidth: 2,
+                        trendlineLinear: {
+                          style: 'rgb(23, 198, 113)',
+                          lineStyle: 'dotted',
+                          width: 2,
+                        }
+                      },
+                    ],
+                  })}}>{date}</Dropdown.Item>)
+            }
+        </Dropdown.Menu>
+      </Dropdown>
+    </div>  
     <div className="drops">
-      <h1>{name}</h1>
-      <div>
-        <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-              Dates
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-              {
-                  dates.map(date =><Dropdown.Item onClick={()=>{setUserData({
-                      labels: time.filter(item => item === date),
-                      datasets: [
-                        {
-                          label: "Price in USD",
-                          data: Object.values(allData.filter(item => item.timestamp === date).map(item => item.data.quote.USD.price)),
-                          backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
-                          borderColor: "rgba(75,192,192,1)",
-                          borderWidth: 2,
-                          pointBackgroundColor: "rgba(75,192,192,1)",
-                          pointBorderColor: "#fff",
-                          pointBorderWidth: 1,
-                          pointHoverBackgroundColor: "#fff",
-                          pointHoverBorderColor: "rgba(75,192,192,1)",
-                          pointHoverBorderWidth: 2,
-                          trendlineLinear: {
-                            style: 'rgb(23, 198, 113)',
-                            lineStyle: 'dotted',
-                            width: 2,
-                          }
-                        },
-                      ],
-                    })}}>{date}</Dropdown.Item>)
-              }
-          </Dropdown.Menu>
-        </Dropdown>
-      </div>
         <div>
           <Line
             data={userData}
@@ -131,6 +133,8 @@ export const CryptoChart = (props) => {
           />
         </div>
     </div>
+      </>
+      
       
     );
 }

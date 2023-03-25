@@ -102,6 +102,9 @@ class CoinMarketCap extends React.Component {
         <Carousel.Item>
         <CryptoChart allData={allETHdata} data={ETH} time={time} name= "Ethereum" dates={removeDuplicates(time)}></CryptoChart>
         </Carousel.Item>
+        <Carousel.Item>
+        <CryptoChart allData={allUSDTdata} data={USDT} time={time} name="Tether" dates={removeDuplicates(time)}></CryptoChart>
+        </Carousel.Item>
       </Carousel>
     </div>
     
