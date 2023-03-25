@@ -1,5 +1,5 @@
 import React from 'react';
-import CoinMarketCap from './Components/CoinMarketCap';
+import CoinMarketCap from './Components/CoinmarketCap/CoinMarketCap';
 import "./CSS/CoinMarketCap.css"
 function App() {
   return (
