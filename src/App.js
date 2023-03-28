@@ -1,10 +1,13 @@
 import React from 'react';
-import CoinMarketCap from './Components/CoinmarketCap/CoinMarketCap';
+import Homepage from './Components/CoinmarketCap/Homepage';
 import "./CSS/CoinMarketCap.css"
+import "./CSS/Homepage.css"
+
+
 function App() {
   return (
     <div>
-      <CoinMarketCap />
+      <Homepage />
     </div>
   );
 }
