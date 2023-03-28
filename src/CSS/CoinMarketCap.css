@@ -1,7 +1,7 @@
 .cryptos {
     display: flex;
-    max-width: 700px;
-    max-height: 500px;
+    max-width: 600px;
+    max-height: 400px;
     flex-direction: column;
     
   }
@@ -15,4 +15,12 @@
     justify-content: space-around;
     padding-top: 20px;
     padding-right: 80px;
+}
+
+.carousel .slide .carousel-dark{
+    display: grid;
+    columns: 2;
+}
+.dropdown {
+    padding-left: 40px;
 }
