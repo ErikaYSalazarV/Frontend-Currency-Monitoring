@@ -1,7 +1,8 @@
 import React from 'react';
-import Carousel from 'react-bootstrap/Carousel';
+import {Card, Stack,Carousel} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { CryptoChart } from './CryptoChart';
+import CoinTable from './CoinTable';
 
 class CoinMarketCap extends React.Component {
   constructor(props) {
@@ -83,7 +84,7 @@ class CoinMarketCap extends React.Component {
       allETHdata.push({"timestamp":timest,"data":this.state.data[i].data.ETH});
       allUSDTdata.push({"timestamp":timest,"data":this.state.data[i].data.USDT});
     }
-    console.log(removeDuplicates(time))
+    //console.log(allBNBdata)
     return (
       /*<div className='cryptos'>
         <CryptoChart allData={allBNBdata} data={BNB} time={time} dates={removeDuplicates(time)} name="Binance Coin"></CryptoChart>
@@ -91,21 +92,30 @@ class CoinMarketCap extends React.Component {
         <CryptoChart allData={allETHdata} data={ETH} time={time} name= "Ethereum" dates={removeDuplicates(time)}></CryptoChart>
         <CryptoChart allData={allUSDTdata} data={USDT} time={time} name="Tether" dates={removeDuplicates(time)}></CryptoChart>
       </div>*/
-    <div className='cryptos'>
-      <Carousel variant='dark' wrap='false' slide='false' interval={null}>
-        <Carousel.Item>
-        <CryptoChart allData={allBNBdata} data={BNB} time={time} dates={removeDuplicates(time)} name="Binance Coin"></CryptoChart>
-        </Carousel.Item>
-        <Carousel.Item>
-        <CryptoChart allData={allBTCdata} data={BTC} time={time} name="Bitcoin"  dates={removeDuplicates(time)}></CryptoChart>
-        </Carousel.Item>
-        <Carousel.Item>
-        <CryptoChart allData={allETHdata} data={ETH} time={time} name= "Ethereum" dates={removeDuplicates(time)}></CryptoChart>
-        </Carousel.Item>
-        <Carousel.Item>
-        <CryptoChart allData={allUSDTdata} data={USDT} time={time} name="Tether" dates={removeDuplicates(time)}></CryptoChart>
-        </Carousel.Item>
-      </Carousel>
+    <div>
+      <div className='cryptos'>
+        <Carousel variant='dark' wrap='false' slide='false' interval={null}>
+          <Carousel.Item>
+              <CryptoChart allData={allBNBdata} data={BNB} time={time} dates={removeDuplicates(time)} name="Binance Coin"></CryptoChart>
+              <CoinTable allBNB={allBNBdata} allBTC={allBTCdata} allETH={allETHdata} allUSDT={allUSDTdata}></CoinTable>
+          </Carousel.Item>
+          <Carousel.Item>
+          <CryptoChart allData={allBTCdata} data={BTC} time={time} name="Bitcoin"  dates={removeDuplicates(time)}></CryptoChart>
+          <CoinTable allBNB={allBNBdata} allBTC={allBTCdata} allETH={allETHdata} allUSDT={allUSDTdata}></CoinTable>
+          </Carousel.Item>
+          <Carousel.Item>
+          <CryptoChart allData={allETHdata} data={ETH} time={time} name= "Ethereum" dates={removeDuplicates(time)}></CryptoChart>
+          <CoinTable allBNB={allBNBdata} allBTC={allBTCdata} allETH={allETHdata} allUSDT={allUSDTdata}></CoinTable>
+          </Carousel.Item>
+          <Carousel.Item>
+          <CryptoChart allData={allUSDTdata} data={USDT} time={time} name="Tether" dates={removeDuplicates(time)}></CryptoChart>
+          <CoinTable allBNB={allBNBdata} allBTC={allBTCdata} allETH={allETHdata} allUSDT={allUSDTdata}></CoinTable>
+          </Carousel.Item>
+            
+        </Carousel>
+      </div>
+      
+    
     </div>
     
     );
