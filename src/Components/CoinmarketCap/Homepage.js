@@ -1,6 +1,7 @@
 import React from 'react';
 import CoinMarketCap from './CoinMarketCap';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import  Stocks  from './Stocks';
 
 function Homepage() {
   return (
@@ -12,7 +13,7 @@ function Homepage() {
               <ul>
                 <li><a href='#home'>Home</a></li>
                 <li><a href='#crypto'>Cryptocurrencies</a></li>
-                <li><a href='#NASDAQ'>Currencies from NASDAQ</a></li>
+                <li><a href='#NASDAQ'>Stocks</a></li>
               </ul>
           </nav>
         </Router>
@@ -28,7 +29,7 @@ function Homepage() {
                 </h1>
                 <h2>
                 This is an application that monitors the value of some <br/> 
-                currencies from NASDAQ and cryptocurrencies
+                Stocks and cryptocurrencies
                 </h2>
             </div>
             <div className='image'>
@@ -40,26 +41,16 @@ function Homepage() {
         </section>
         <section id="crypto">
         <h1 style={{ textAlign: 'center' }}>Cryptocurrencies</h1>
-        <div style={{ display: 'flex' }}>
-            <div style={{ width: '50%', padding: '10px' }}>
-            <CoinMarketCap/>
-            </div>
-            <div style={{ width: '50%', padding: '10px' }}>
-            <CoinMarketCap/>
-            </div>
-        </div>
+          <div className='coin-market' style={{ width: '100%', padding: '10px',marginLeft:'10%' }}>
+          <CoinMarketCap/>
+          </div>
         </section>
         {/* Seccion Stock */}
         <section id="NASDAQ">
-        <h1 style={{ textAlign: 'center' }}>Currencies from NASDAQ</h1>
-        <div style={{ display: 'flex' }}>
-            <div style={{ width: '50%', padding: '10px' }}>
-            <CoinMarketCap/>
-            </div>
-            <div style={{ width: '50%', padding: '10px' }}>
-            <CoinMarketCap/>
-            </div>
-        </div>
+        <h1 style={{ textAlign: 'center' }}>Stocks Prices</h1>
+          <div style={{ width: '100%', padding: '10px' , marginLeft:'10%'}}>
+          <Stocks/>
+          </div>
         </section>
     </div>
   );

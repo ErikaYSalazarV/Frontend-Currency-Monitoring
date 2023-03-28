@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Stockschart } from './Stockschart';
+import StocksTable from './StocksTable';
 
 class CoinMarketCap extends React.Component {
   constructor(props) {
@@ -107,20 +108,27 @@ class CoinMarketCap extends React.Component {
         <CryptoChart allData={allUSDTdata} data={USDT} time={time} name="Tether" dates={removeDuplicates(time)}></CryptoChart>
       </div>*/
     <div className='cryptos'>
-      <Carousel variant='dark' wrap='false' slide='false' interval={null}>
-        <Carousel.Item>
-        <Stockschart allData={allMicrosoftdata} data={Microsoft} time={time} dates={removeDuplicates(time)} name="Microsoft"></Stockschart>
-        </Carousel.Item>
-        <Carousel.Item>
-        <Stockschart allData={allAMDdata} data={AMD} time={time} name="AMD"  dates={removeDuplicates(time)}></Stockschart>
-        </Carousel.Item>
-        <Carousel.Item>
-        <Stockschart allData={allGoogledata} data={Google} time={time} name= "Google" dates={removeDuplicates(time)}></Stockschart>
-        </Carousel.Item>
-        <Carousel.Item>
-        <Stockschart allData={allAppledata} data={Apple} time={time} name="Apple" dates={removeDuplicates(time)}></Stockschart>
-        </Carousel.Item>
-      </Carousel>
+      <div className='carousel-coins'>
+        <Carousel variant='dark' wrap='false' slide='false' interval={null}>
+          <Carousel.Item>
+          <Stockschart allData={allMicrosoftdata} data={Microsoft} time={time} dates={removeDuplicates(time)} name="Microsoft"></Stockschart>
+          </Carousel.Item>
+          <Carousel.Item>
+          <Stockschart allData={allAMDdata} data={AMD} time={time} name="AMD"  dates={removeDuplicates(time)}></Stockschart>
+          </Carousel.Item>
+          <Carousel.Item>
+          <Stockschart allData={allGoogledata} data={Google} time={time} name= "Google" dates={removeDuplicates(time)}></Stockschart>
+          </Carousel.Item>
+          <Carousel.Item>
+          <Stockschart allData={allAppledata} data={Apple} time={time} name="Apple" dates={removeDuplicates(time)}></Stockschart>
+          </Carousel.Item>
+        </Carousel>
+      </div>
+      <h2>Last five Stock prices</h2>
+      <div className='coin-table'>
+        <StocksTable Microsof={Microsoft} AMD={AMD} Google={Google} Apple={Apple}></StocksTable>
+      </div>
+      
     </div>
     
     );

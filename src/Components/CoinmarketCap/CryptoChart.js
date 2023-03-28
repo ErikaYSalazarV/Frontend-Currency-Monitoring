@@ -127,7 +127,7 @@ export const CryptoChart = (props) => {
     </div>  
     <div className="drops">
         <div>
-          <Line
+          <Line className="chart"
             data={userData}
             options={options}
           />

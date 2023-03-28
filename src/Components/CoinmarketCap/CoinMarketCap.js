@@ -92,27 +92,28 @@ class CoinMarketCap extends React.Component {
         <CryptoChart allData={allETHdata} data={ETH} time={time} name= "Ethereum" dates={removeDuplicates(time)}></CryptoChart>
         <CryptoChart allData={allUSDTdata} data={USDT} time={time} name="Tether" dates={removeDuplicates(time)}></CryptoChart>
       </div>*/
-    <div>
-      <div className='cryptos'>
+    <div className='cryptos'>
+      <div className='carousel-coins'>
         <Carousel variant='dark' wrap='false' slide='false' interval={null}>
           <Carousel.Item>
-              <CryptoChart allData={allBNBdata} data={BNB} time={time} dates={removeDuplicates(time)} name="Binance Coin"></CryptoChart>
-              <CoinTable allBNB={allBNBdata} allBTC={allBTCdata} allETH={allETHdata} allUSDT={allUSDTdata}></CoinTable>
+            <CryptoChart allData={allBNBdata} data={BNB} time={time} dates={removeDuplicates(time)} name="Binance Coin"></CryptoChart>
           </Carousel.Item>
           <Carousel.Item>
           <CryptoChart allData={allBTCdata} data={BTC} time={time} name="Bitcoin"  dates={removeDuplicates(time)}></CryptoChart>
-          <CoinTable allBNB={allBNBdata} allBTC={allBTCdata} allETH={allETHdata} allUSDT={allUSDTdata}></CoinTable>
           </Carousel.Item>
           <Carousel.Item>
           <CryptoChart allData={allETHdata} data={ETH} time={time} name= "Ethereum" dates={removeDuplicates(time)}></CryptoChart>
-          <CoinTable allBNB={allBNBdata} allBTC={allBTCdata} allETH={allETHdata} allUSDT={allUSDTdata}></CoinTable>
+          
           </Carousel.Item>
           <Carousel.Item>
           <CryptoChart allData={allUSDTdata} data={USDT} time={time} name="Tether" dates={removeDuplicates(time)}></CryptoChart>
-          <CoinTable allBNB={allBNBdata} allBTC={allBTCdata} allETH={allETHdata} allUSDT={allUSDTdata}></CoinTable>
           </Carousel.Item>
             
         </Carousel>
+      </div>
+      <h2>Last Five Coin Prices</h2>
+      <div className='coin-table'>
+          <CoinTable allBNB={allBNBdata} allBTC={allBTCdata} allETH={allETHdata} allUSDT={allUSDTdata}></CoinTable>
       </div>
       
     

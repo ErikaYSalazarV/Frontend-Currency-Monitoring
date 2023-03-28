@@ -12,8 +12,6 @@ function App() {
   return (
     <div>
       <Homepage />
-      <CoinMarketCap/>
-      <Stocks />
     </div>
   );
 }
