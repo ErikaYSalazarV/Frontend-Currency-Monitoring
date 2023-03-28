@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect, useState } from "react";
 Chart.register(...registerables);
 
-export const CryptoChart = (props) => {
+export const Stockschart = (props) => {
     const {allData,data,time,name,className,dates} = props
 
     const options2 = {
@@ -103,7 +103,7 @@ export const CryptoChart = (props) => {
                     datasets: [
                       {
                         label: "Price in USD",
-                        data: Object.values(allData.filter(item => item.timestamp === date).map(item => item.data.quote.USD.price)),
+                        data: Object.values(allData.filter(item => item.timestamp === date).map(item => item.data.price)),
                         backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
                         borderColor: "rgba(75,192,192,1)",
                         borderWidth: 2,
@@ -127,7 +127,7 @@ export const CryptoChart = (props) => {
     </div>  
     <div className="drops">
         <div>
-          <Line className="chart"
+          <Line
             data={userData}
             options={options}
           />

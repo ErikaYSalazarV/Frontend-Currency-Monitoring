@@ -1,8 +1,8 @@
 import React from 'react';
-import {Card, Stack,Carousel} from 'react-bootstrap';
+import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.css';
-import { CryptoChart } from './CryptoChart';
-import CoinTable from './CoinTable';
+import { Stockschart } from './Stockschart';
+import StocksTable from './StocksTable';
 
 class CoinMarketCap extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class CoinMarketCap extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://127.0.0.1:5000/v3/coins', {
+    fetch('http://127.0.0.1:5000/v1/stocks', {
       headers: {
         'Origin': 'http://localhost:3000'
       }
@@ -54,37 +54,52 @@ class CoinMarketCap extends React.Component {
           index) => arr.indexOf(item) === index);
     }
     //console.log(this.state.data)
-    const BNB = []
-    const BTC = []
-    const ETH = []
-    const USDT = []
+    const Microsoft = []
+    const AMD = []
+    const Google = []
+    const Apple = []
 
-    const allBNBdata = []
-    const allBTCdata = []
-    const allETHdata = []
-    const allUSDTdata = []
+    const allMicrosoftdata = []
+    const allAMDdata = []
+    const allGoogledata = []
+    const allAppledata = []
 
     const time = []
+
+    console.log(this.state.data)
     for(var i=0; i< this.state.data.length; i++){
-      BNB.push(this.state.data[i].data.BNB.quote.USD.price)
-      BTC.push(this.state.data[i].data.BTC.quote.USD.price)
-      ETH.push(this.state.data[i].data.ETH.quote.USD.price)
-      USDT.push(this.state.data[i].data.USDT.quote.USD.price)
-      var timest = new Date(this.state.data[i].timestamp).toLocaleString(
-        "en-US",
-          {
-            day: "2-digit",
-            year: "numeric",
-            month: "2-digit"
-          }
-        )
+      Microsoft.push(this.state.data[i].Microsoft.price)
+      AMD.push(this.state.data[i].AMD.price)
+      Google.push(this.state.data[i].Google.price)
+      Apple.push(this.state.data[i].Apple.price)
+      if(this.state.data[i].datetime !== null){
+        var timest = new Date(this.state.data[i].datetime).toLocaleString(
+            "en-US",
+              {
+                day: "2-digit",
+                year: "numeric",
+                month: "2-digit"
+              }
+            )
+      }
+      else{
+        var timest = new Date(this.state.data[i].Microsoft.datetime).toLocaleString(
+            "en-US",
+              {
+                day: "2-digit",
+                year: "numeric",
+                month: "2-digit"
+              }
+            )
+      }
+      
       time.push(timest)
-      allBNBdata.push({"timestamp":timest,"data":this.state.data[i].data.BNB});
-      allBTCdata.push({"timestamp":timest,"data":this.state.data[i].data.BTC});
-      allETHdata.push({"timestamp":timest,"data":this.state.data[i].data.ETH});
-      allUSDTdata.push({"timestamp":timest,"data":this.state.data[i].data.USDT});
+      allMicrosoftdata.push({"timestamp":timest,"data":this.state.data[i].Microsoft});
+      allAMDdata.push({"timestamp":timest,"data":this.state.data[i].AMD});
+      allGoogledata.push({"timestamp":timest,"data":this.state.data[i].Google});
+      allAppledata.push({"timestamp":timest,"data":this.state.data[i].Apple});
     }
-    //console.log(allBNBdata)
+    console.log(removeDuplicates(time))
     return (
       /*<div className='cryptos'>
         <CryptoChart allData={allBNBdata} data={BNB} time={time} dates={removeDuplicates(time)} name="Binance Coin"></CryptoChart>
@@ -96,27 +111,24 @@ class CoinMarketCap extends React.Component {
       <div className='carousel-coins'>
         <Carousel variant='dark' wrap='false' slide='false' interval={null}>
           <Carousel.Item>
-            <CryptoChart allData={allBNBdata} data={BNB} time={time} dates={removeDuplicates(time)} name="Binance Coin"></CryptoChart>
+          <Stockschart allData={allMicrosoftdata} data={Microsoft} time={time} dates={removeDuplicates(time)} name="Microsoft"></Stockschart>
           </Carousel.Item>
           <Carousel.Item>
-          <CryptoChart allData={allBTCdata} data={BTC} time={time} name="Bitcoin"  dates={removeDuplicates(time)}></CryptoChart>
+          <Stockschart allData={allAMDdata} data={AMD} time={time} name="AMD"  dates={removeDuplicates(time)}></Stockschart>
           </Carousel.Item>
           <Carousel.Item>
-          <CryptoChart allData={allETHdata} data={ETH} time={time} name= "Ethereum" dates={removeDuplicates(time)}></CryptoChart>
-          
+          <Stockschart allData={allGoogledata} data={Google} time={time} name= "Google" dates={removeDuplicates(time)}></Stockschart>
           </Carousel.Item>
           <Carousel.Item>
-          <CryptoChart allData={allUSDTdata} data={USDT} time={time} name="Tether" dates={removeDuplicates(time)}></CryptoChart>
+          <Stockschart allData={allAppledata} data={Apple} time={time} name="Apple" dates={removeDuplicates(time)}></Stockschart>
           </Carousel.Item>
-            
         </Carousel>
       </div>
-      <h2>Last Five Coin Prices</h2>
+      <h2>Last five Stock prices</h2>
       <div className='coin-table'>
-          <CoinTable allBNB={allBNBdata} allBTC={allBTCdata} allETH={allETHdata} allUSDT={allUSDTdata}></CoinTable>
+        <StocksTable Microsof={Microsoft} AMD={AMD} Google={Google} Apple={Apple}></StocksTable>
       </div>
       
-    
     </div>
     
     );

@@ -12,7 +12,7 @@ function CoinTable(props) {
         arraWithAllData.push([Math.round(allBNB[i].data.quote.USD.price),Math.round(allBTC[i].data.quote.USD.price),Math.round(allETH[i].data.quote.USD.price),Math.round(allUSDT[i].data.quote.USD.price)]);
     }
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover variant='dark'> 
       <thead>
         <tr>
           <th>#</th>
